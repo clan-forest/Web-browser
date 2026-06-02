@@ -1,61 +1,76 @@
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f8fafd;
-  color: #202124;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,.15);
+    z-index: 1000;
+}
+
+.topbar input {
+    flex: 1;
+    padding: 14px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.topbar button {
+    border: none;
+    border-radius: 25px;
+    background: #4285f4;
+    color: white;
+    padding: 12px 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.topbar button:hover {
+    background: #3367d6;
 }
 
 .app {
-  padding: 35px 18px;
-  text-align: center;
+    text-align: center;
+    padding: 30px;
 }
 
-h1 {
-  font-size: 46px;
-  color: #4285f4;
-  margin-top: 40px;
+.logo {
+    font-size: 48px;
+    color: #4285f4;
+    margin-top: 40px;
 }
 
-.search {
-  display: flex;
-  gap: 8px;
-  max-width: 600px;
-  margin: 25px auto;
+.shortcuts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    max-width: 700px;
+    margin: 30px auto;
 }
 
-input {
-  flex: 1;
-  padding: 15px;
-  border-radius: 30px;
-  border: 1px solid #ccc;
-  font-size: 17px;
+.shortcut {
+    background: white;
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    font-size: 16px;
 }
 
-button {
-  padding: 13px 18px;
-  border: none;
-  border-radius: 25px;
-  background: #4285f4;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
+.shortcut:hover {
+    transform: scale(1.03);
 }
 
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  max-width: 500px;
-  margin: 30px auto;
-}
-
-.buttons button {
-  background: white;
-  color: #202124;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-}
-
-.note {
-  color: #555;
-  margin-top: 30px;
+.info {
+    margin-top: 30px;
+    color: #555;
 }
