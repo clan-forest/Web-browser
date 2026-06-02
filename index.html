@@ -1,36 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Browser</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#4285f4">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Browser</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="app">
-  <h1>My Browser</h1>
-
-  <div class="search">
-    <input id="searchBox" placeholder="Search or type a website">
+<div class="topbar">
+    <input
+        id="urlBar"
+        type="text"
+        placeholder="Search Google or enter a website..."
+    >
     <button onclick="go()">Go</button>
-  </div>
-
-  <div class="buttons">
-    <button onclick="openSite('https://www.google.com')">Google</button>
-    <button onclick="openSite('https://mail.google.com')">Gmail</button>
-    <button onclick="openSite('https://www.youtube.com')">YouTube</button>
-    <button onclick="openSite('https://www.roblox.com')">Roblox</button>
-    <button onclick="openSite('https://www.netflix.com')">Netflix</button>
-    <button onclick="openSite('https://www.wikipedia.org')">Wikipedia</button>
-  </div>
-
-  <p class="note">
-    Add this to your iPhone Home Screen to use it like an app.
-  </p>
 </div>
 
-<script src="script.js"></script>
+<div class="app">
+
+    <div class="logo">My Browser</div>
+
+    <div class="shortcuts">
+        <button class="shortcut" onclick="openSite('https://www.google.com')">🔎 Google</button>
+
+        <button class="shortcut" onclick="openSite('https://mail.google.com')">📧 Gmail</button>
+
+        <button class="shortcut" onclick="openSite('https://www.youtube.com')">▶ YouTube</button>
+
+        <button class="shortcut" onclick="openSite('https://www.roblox.com')">🎮 Roblox</button>
+
+        <button class="shortcut" onclick="openSite('https://www.netflix.com')">🎬 Netflix</button>
+
+        <button class="shortcut" onclick="openSite('https://www.wikipedia.org')">📚 Wikipedia</button>
+
+        <button class="shortcut" onclick="openSite('https://archive.org')">📦 Archive.org</button>
+
+        <button class="shortcut" onclick="openSite('https://www.britannica.com')">🧠 Britannica</button>
+    </div>
+
+    <div class="info">
+        Type a search or website in the URL bar above.
+    </div>
+
+</div>
+
+<script>
+const urlBar = document.getElementById("urlBar");
+
+function go() {
+    let text = urlBar.value.trim();
+
+    if (text === "") return;
+
+    let url;
+
+    if (!text.includes(".") && !text.startsWith("http")) {
+        url = "https://www.google.com/search?q=" + encodeURIComponent(text);
+    } else if (!text.startsWith("http://") && !text.startsWith("https://")) {
+        url = "https://" + text;
+    } else {
+        url = text;
+    }
+
+    window.location.href = url;
+}
+
+function openSite(url) {
+    window.location.href = url;
+}
+
+urlBar.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        go();
+    }
+});
+</script>
+
 </body>
 </html>
