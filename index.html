@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Web Browser</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="topbar">
+    <button onclick="goBack()">⬅</button>
+    <button onclick="goForward()">➡</button>
+    <button onclick="reloadPage()">🔄</button>
+    <button onclick="goHome()">🏠</button>
+
+    <input id="address" placeholder="Search or type a website">
+
+    <button onclick="go()">Go</button>
+  </div>
+
+  <div class="shortcuts">
+    <button onclick="openReal('https://www.youtube.com')">YouTube</button>
+    <button onclick="openReal('https://www.google.com')">Google</button>
+    <button onclick="openReal('https://mail.google.com')">Gmail</button>
+    <button onclick="openReal('https://www.roblox.com')">Roblox</button>
+    <button onclick="openReal('https://www.netflix.com')">Netflix</button>
+  </div>
+
+  <iframe id="browser" src="https://www.wikipedia.org"></iframe>
+
+  <script src="script.js"></script>
+</body>
+</html>
