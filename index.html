@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Web Browser</title>
+  <title>Mail Browser</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="topbar">
-    <button onclick="goBack()">⬅</button>
-    <button onclick="goForward()">➡</button>
-    <button onclick="reloadPage()">🔄</button>
-    <button onclick="goHome()">🏠</button>
+  <div class="app">
 
-    <input id="address" placeholder="Search or type a website">
+    <aside class="sidebar">
+      <h2>📬 MailBrowser</h2>
+      <button onclick="openReal('https://mail.google.com')">📧 Gmail</button>
+      <button onclick="openReal('https://www.google.com')">🔎 Google</button>
+      <button onclick="openReal('https://www.youtube.com')">▶ YouTube</button>
+      <button onclick="openReal('https://www.roblox.com')">🎮 Roblox</button>
+      <button onclick="openReal('https://www.netflix.com')">🎬 Netflix</button>
+      <hr>
+      <button onclick="goHome()">🏠 Home</button>
+      <button onclick="showHelp()">❓ Help</button>
+    </aside>
 
-    <button onclick="go()">Go</button>
+    <main class="main">
+      <div class="topbar">
+        <button onclick="goBack()">⬅</button>
+        <button onclick="goForward()">➡</button>
+        <button onclick="reloadPage()">🔄</button>
+
+        <input id="address" placeholder="Search or type a website">
+
+        <button onclick="go()">Go</button>
+      </div>
+
+      <div id="notice">
+        Some websites open in a real tab because they block mini browsers.
+      </div>
+
+      <iframe id="browser" src="https://www.wikipedia.org"></iframe>
+    </main>
+
   </div>
-
-  <div class="shortcuts">
-    <button onclick="openReal('https://www.youtube.com')">YouTube</button>
-    <button onclick="openReal('https://www.google.com')">Google</button>
-    <button onclick="openReal('https://mail.google.com')">Gmail</button>
-    <button onclick="openReal('https://www.roblox.com')">Roblox</button>
-    <button onclick="openReal('https://www.netflix.com')">Netflix</button>
-  </div>
-
-  <iframe id="browser" src="https://www.wikipedia.org"></iframe>
 
   <script src="script.js"></script>
 </body>
