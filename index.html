@@ -1,45 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mail Browser</title>
+  <title>My Browser</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4285f4">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-  <div class="app">
+<div class="app">
+  <h1>My Browser</h1>
 
-    <aside class="sidebar">
-      <h2>📬 MailBrowser</h2>
-      <button onclick="openReal('https://mail.google.com')">📧 Gmail</button>
-      <button onclick="openReal('https://www.google.com')">🔎 Google</button>
-      <button onclick="openReal('https://www.youtube.com')">▶ YouTube</button>
-      <button onclick="openReal('https://www.roblox.com')">🎮 Roblox</button>
-      <button onclick="openReal('https://www.netflix.com')">🎬 Netflix</button>
-      <hr>
-      <button onclick="goHome()">🏠 Home</button>
-      <button onclick="showHelp()">❓ Help</button>
-    </aside>
-
-    <main class="main">
-      <div class="topbar">
-        <button onclick="goBack()">⬅</button>
-        <button onclick="goForward()">➡</button>
-        <button onclick="reloadPage()">🔄</button>
-
-        <input id="address" placeholder="Search or type a website">
-
-        <button onclick="go()">Go</button>
-      </div>
-
-      <div id="notice">
-        Some websites open in a real tab because they block mini browsers.
-      </div>
-
-      <iframe id="browser" src="https://www.wikipedia.org"></iframe>
-    </main>
-
+  <div class="search">
+    <input id="searchBox" placeholder="Search or type a website">
+    <button onclick="go()">Go</button>
   </div>
 
-  <script src="script.js"></script>
+  <div class="buttons">
+    <button onclick="openSite('https://www.google.com')">Google</button>
+    <button onclick="openSite('https://mail.google.com')">Gmail</button>
+    <button onclick="openSite('https://www.youtube.com')">YouTube</button>
+    <button onclick="openSite('https://www.roblox.com')">Roblox</button>
+    <button onclick="openSite('https://www.netflix.com')">Netflix</button>
+    <button onclick="openSite('https://www.wikipedia.org')">Wikipedia</button>
+  </div>
+
+  <p class="note">
+    Add this to your iPhone Home Screen to use it like an app.
+  </p>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
