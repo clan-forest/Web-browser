@@ -1,9 +1,1 @@
-{
-  "name": "My Browser",
-  "short_name": "Browser",
-  "start_url": "index.html",
-  "display": "standalone",
-  "background_color": "#f8fafd",
-  "theme_color": "#4285f4",
-  "icons": []
-}
+
