@@ -2,58 +2,135 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D VR Browser</title>
+  <title>3D VR Web Browser</title>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
   <style>
-    body { margin:0; font-family:Arial; background:#111; color:white; }
-    #bar {
-      position:fixed; top:10px; left:10px; right:10px;
-      z-index:10; display:flex; gap:8px;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: black;
+      color: white;
+      overflow: hidden;
     }
-    input { flex:1; padding:12px; font-size:16px; }
-    button { padding:12px; font-size:16px; }
+
+    #topBar {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      z-index: 999;
+      display: flex;
+      gap: 8px;
+    }
+
+    #urlBox {
+      flex: 1;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    button {
+      padding: 12px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #1d8cff;
+      color: white;
+      font-weight: bold;
+    }
+
+    #webFrame {
+      display: none;
+      position: fixed;
+      left: 5%;
+      top: 70px;
+      width: 90%;
+      height: 80%;
+      z-index: 998;
+      border: 4px solid #1d8cff;
+      border-radius: 12px;
+      background: white;
+    }
   </style>
 </head>
+
 <body>
 
-<div id="bar">
-  <input id="url" placeholder="Type website, like https://example.com">
-  <button onclick="go()">Go</button>
-</div>
+  <div id="topBar">
+    <input id="urlBox" placeholder="Type website like google.com">
+    <button onclick="openSite()">Go</button>
+    <button onclick="closeSite()">Close</button>
+  </div>
 
-<a-scene>
-  <a-sky color="#101827"></a-sky>
+  <iframe id="webFrame"></iframe>
 
-  <a-plane position="0 1.6 -3" width="4" height="2.3" color="#222"></a-plane>
-  <a-text id="screenText"
-          value="3D VR Browser\nType a website above.\nSome sites will open in a new tab."
-          position="-1.8 2.1 -2.9"
-          width="3.5"
-          color="white"></a-text>
+  <a-scene>
+    <a-sky color="#050816"></a-sky>
 
-  <a-box position="0 0.5 -3" width="4.2" height="0.1" depth="0.2" color="#555"></a-box>
+    <a-plane position="0 1.7 -3" width="4.6" height="2.6" color="#111827"></a-plane>
 
-  <a-camera position="0 1.6 0"></a-camera>
-</a-scene>
+    <a-text
+      id="screenText"
+      value="3D VR Web Browser\n\nType a website at the top.\nExample: example.com\n\nSome websites may open in a new tab."
+      position="-2 2.4 -2.9"
+      width="4"
+      color="white">
+    </a-text>
 
-<script>
-function go() {
-  let url = document.getElementById("url").value.trim();
+    <a-box position="0 0.35 -3" width="4.8" height="0.15" depth="0.25" color="#374151"></a-box>
 
-  if (!url) return;
+    <a-camera position="0 1.6 0"></a-camera>
+  </a-scene>
 
-  if (!url.startsWith("http://") && !url.startsWith("https://")) {
-    url = "https://" + url;
-  }
+  <script>
+    function fixUrl(url) {
+      url = url.trim();
 
-  document.getElementById("screenText").setAttribute(
-    "value",
-    "Opening:\n" + url + "\n\nIf it does not show inside VR,\nit opened in a new tab."
-  );
+      if (url === "") return "";
 
-  window.open(url, "_blank");
-}
-</script>
+      if (!url.startsWith("http://") && !url.startsWith("https://")) {
+        url = "https://" + url;
+      }
+
+      return url;
+    }
+
+    function openSite() {
+      let url = fixUrl(document.getElementById("urlBox").value);
+
+      if (url === "") {
+        alert("Type a website first.");
+        return;
+      }
+
+      document.getElementById("screenText").setAttribute(
+        "value",
+        "Trying to open:\n" + url + "\n\nIf the website blocks the 3D browser,\nit will open in a new tab."
+      );
+
+      let frame = document.getElementById("webFrame");
+      frame.style.display = "block";
+      frame.src = url;
+
+      setTimeout(function () {
+        window.open(url, "_blank");
+      }, 1200);
+    }
+
+    function closeSite() {
+      let frame = document.getElementById("webFrame");
+      frame.style.display = "none";
+      frame.src = "";
+
+      document.getElementById("screenText").setAttribute(
+        "value",
+        "3D VR Web Browser\n\nType a website at the top.\nExample: example.com"
+      );
+    }
+  </script>
 
 </body>
 </html>
